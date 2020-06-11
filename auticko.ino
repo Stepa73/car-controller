@@ -96,30 +96,30 @@ void loop() {
 
 void lights1(){
   
-  static unsigned long lastTime = 0;
-  const long interval = 3000;
-  static bool state = 0;
+  static unsigned long lastTime = 0;//čas od kterého se odečíta aktualní "minlý čas"
+  const long interval = 3000; //čas v ms intervalu mezi rozsvícením a zhasnutím blinkeru
+  static bool state = 0; //přepínač vypnutého a zapnutého blinkru
 
   unsigned long now = millis();
 
-  if ( now - lastTime > interval && state == 0) {
-    state = 1;
-    lastTime = now;
+  if ( now - lastTime > interval && state == 0) { //čas od začátku programu v ms minus minlý čas musí být větší než interval a zaroven přepínač se musí = 0
+    state = 1; // změníme přepínač 
+    lastTime = now; // čas změny nastavíme na minlý čas
     analogWrite(blinker1, 1024);
     Serial.println("BLINK up 1");
     
   }
 
-  if ( now - lastTime > interval && state == 1) {
-    state = 0;
-    lastTime = now;
+  if ( now - lastTime > interval && state == 1) {//čas od začátku programu v ms minus minlý čas musí být větší než interval a zaroven přepínač se musí = 1
+    state = 0;// změníme přepínač 
+    lastTime = now;// čas změny nastavíme na minlý čas
     analogWrite(blinker1, 0);
     Serial.println("BLINK down 1");
   }
   
   
 }
-
+//podobné jak u lights1
 void lights2(){
   
   static unsigned long lastTime = 0;
